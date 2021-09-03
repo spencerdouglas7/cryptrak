@@ -1,0 +1,68 @@
+table {
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 2vh;
+    border-collapse: collapse;
+    max-height: 75vh;
+    overflow: scroll;
+    font-family: 'Exo';
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+th {
+    font-size: 1.5em;
+    padding: 0px;
+    background-color: #00aec5;
+    padding-left: 1vw; 
+    padding-right: 1vw; 
+}
+
+th:first-child {
+    border-top-left-radius: 30px;
+}
+th:last-child {
+    border-top-right-radius: 30px;
+}
+
+tr {
+    padding: 0px;
+}
+
+tr:nth-child(odd){
+    background-color: white;
+}
+tr:nth-child(even){
+    background-color: lightgrey;
+}
+tr:first-child {
+    background-color: unset;
+}
+tr:last-child {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+td:not(:first-child) {
+    text-align: center;
+    padding-left: 2vw; 
+    padding-right: 2vw; 
+}
+td:first-child {
+    display: flex;
+    justify-content: center;
+    min-width: 6vh !important;
+}
+.tokens, tokens {
+    border: solid black 1px;
+    border-radius: 30px;
+}
+
+.price-up {
+    color: rgb(1, 155, 30);
+    font-weight: 600;
+}
+.price-down {
+    color: rgb(241, 66, 66);
+    font-weight: 600;
+}
+

@@ -1,0 +1,150 @@
+::ng-deep body {
+    padding: 0;
+    margin: 0;
+    background-color: #1e2225;
+    color: white;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #000000;
+    color: #00aec5;
+    font-size: 5vh;
+    min-height: 8vh;
+    font-family: 'Exo';
+    font-weight: 100;
+    border-bottom: 1px solid #00aec5;
+    margin-bottom: 3vh;
+}
+.dash-left-stack {
+    width: 60vw;
+    border-right: solid red 1px;
+}
+
+.dash-right-stack {
+    border-left: solid red 1px;
+    width: 40vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+
+
+::ng-deep .section-header {
+    font-family: 'Exo';
+    font-weight: 200;
+    font-size: 4vh;
+    color: #00aec5;
+    text-align: center;
+}
+.bubble-component {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    border-radius: 15px;
+    border: 1px solid #00aec5;
+    background-color: #26353b;
+}
+
+::ng-deep .rounded-button {
+    border-radius: 30px;
+    border: 1px solid black;
+    background-color: #00aec5;
+    line-height: 1em;
+    padding: 1em;
+}
+::ng-deep .rounded-button:hover, .slider.round {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+::ng-deep .form-item {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+::ng-deep .form-item > *{
+    margin-right: 1em;
+}
+
+::ng-deep .stonks {
+    color: rgb(1, 155, 30);
+}
+
+::ng-deep .loss {
+    color: rgb(241, 66, 66);
+}
+
+/*
+SWITCH STUFF
+*/
+
+ /* The switch - the box around the slider */
+ ::ng-deep .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+::ng-deep .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+::ng-deep  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(1, 155, 30);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  ::ng-deep  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+::ng-deep input:checked + .slider {
+    background-color: rgb(241, 66, 66);
+  }
+  
+::ng-deep input:focus + .slider {
+    box-shadow: 0 0 1px rgb(241, 66, 66);
+  }
+  
+::ng-deep input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+::ng-deep .slider.round {
+    border-radius: 34px;
+  }
+  
+::ng-deep  .slider.round:before {
+    border-radius: 50%;
+  } 

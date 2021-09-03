@@ -1,0 +1,28 @@
+<h2 class = "section-header"> Portfolio</h2>
+<div style = "display: flex; flex-flow: column nowrap">
+    <table>
+    </table>
+    <form>
+        <div class = "form-item">
+            <label>Token Name</label><input type = "text">
+        </div>
+        <div class = "form-item">
+            <label>Amount</label><input type = "text">
+        </div>
+        <div class = "form-item">
+            <label>Fiat Cost</label><input type = "text">
+        </div>
+        <div class = "form-item" style = "align-items: center; align-content: center;">
+            <span [ngClass] = "{'stonks' : !isSale, 'loss' : isSale}">Purchase</span>
+            <label class="switch">
+                <input type="checkbox" (click) = "isSale = (isSale ? false : true)">
+                <span class="slider round"></span>
+              </label>
+              <span [ngClass] = "{'loss' : !isSale, 'stonks' : isSale}">Sale</span>
+        </div>
+        <div class = "form-item">
+            <button type = "button" class = "rounded-button">Add Transaction</button>
+        </div>
+    </form>
+</div>
+
