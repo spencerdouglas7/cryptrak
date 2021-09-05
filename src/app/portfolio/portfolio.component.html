@@ -12,7 +12,7 @@
         <div class = "form-item">
             <label>Fiat Cost</label><input type = "text">
         </div>
-        <div class = "form-item" style = "align-items: center; align-content: center;">
+        <div class = "form-item" style = "align-items: center; align-content: center; width: 100% !important">
             <span [ngClass] = "{'stonks' : !isSale, 'loss' : isSale}">Purchase</span>
             <label class="switch">
                 <input type="checkbox" (click) = "isSale = (isSale ? false : true)">

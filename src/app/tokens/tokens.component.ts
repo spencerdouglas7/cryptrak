@@ -14,7 +14,7 @@ export class TokensComponent implements OnInit {
   constructor(tokensService: TokensService) {
     this.tokens  = tokensService.getAllTokens();
   }
-
+  
   ngOnInit(): void {
   }
 

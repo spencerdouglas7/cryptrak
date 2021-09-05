@@ -1,0 +1,12 @@
+<form class = "bubble-component" style>
+    <h2 class = "section-header">Login</h2>
+    <div class = "form-item">
+        <label>Username</label><input type = "text" [(ngModel)]="username" name = "username" placeholder="Username">
+    </div>
+    <div class = "form-item">
+        <label>Password</label><input type = "text" [(ngModel)]="password" name = "password" type = "password" placeholder="Password">
+    </div>
+    <small>Your password must contain at least 8 characters.</small>
+    <button class = "rounded-button" type = "button" (click) = "login(username, password)">Sign In</button>
+    <a (click) = "switchView()" class = "cryptrak-text" style = "text-align: center; margin-top: 2em;">Don't have an account? Click here to create one.</a>
+</form>

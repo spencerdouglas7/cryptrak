@@ -4,6 +4,12 @@
     background-color: #1e2225;
     color: white;
 }
+::ng-deep a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    transform: translateY(-0.2rem);
+
+}
 header {
     display: flex;
     justify-content: center;
@@ -39,6 +45,12 @@ header {
     color: #00aec5;
     text-align: center;
 }
+::ng-deep .cryptrak-text {
+  font-family: 'Exo';
+  font-weight: 400;
+  color: #00aec5;
+
+}
 .bubble-component {
     margin-left: 1vw;
     margin-right: 1vw;
@@ -51,24 +63,69 @@ header {
     background-color: #26353b;
 }
 
-::ng-deep .rounded-button {
+::ng-deep .rounded-button { 
+    align-self: center;
     border-radius: 30px;
-    border: 1px solid black;
+    border: none;
     background-color: #00aec5;
     line-height: 1em;
     padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    white-space: nowrap;
+    transition: transform .3s;
+    
 }
 ::ng-deep .rounded-button:hover, .slider.round {
     cursor: pointer;
     filter: brightness(90%);
+    transform: translateY(-0.2rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep form {
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  width: 50%;
+  align-self: center;
+  flex-grow: 0;
+  margin: auto;
+
+}
+::ng-deep input {
+  border-radius: 30px;
+  border: none;
+  padding-top: .25em;
+  padding-bottom: .25em;
+  text-align: center;
+}
+
+::ng-deep ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+::ng-deep :-moz-placeholder { /* Firefox 18- */
+  text-align: center;  
+}
+
+::ng-deep ::-moz-placeholder {  /* Firefox 19+ */
+  text-align: center;  
+}
+
+::ng-deep :-ms-input-placeholder {  
+  text-align: center; 
 }
 
 ::ng-deep .form-item {
+    color: white;
     display: flex;
     align-content: center;
     justify-content: center;
     margin-top: 1vh;
     margin-bottom: 1vh;
+    width: 50%;
+    align-self: center;
 }
 ::ng-deep .form-item > *{
     margin-right: 1em;
@@ -90,16 +147,22 @@ SWITCH STUFF
  ::ng-deep .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
+    width: 60px !important;
     height: 34px;
+
   }
   
   /* Hide default HTML checkbox */
 ::ng-deep .switch input {
     opacity: 0;
-    width: 0;
+    width: 0 !important;;
     height: 0;
   }
+
+::ng-deep .switch:hover {
+
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
   
   /* The slider */
 ::ng-deep  .slider {
@@ -118,7 +181,7 @@ SWITCH STUFF
     position: absolute;
     content: "";
     height: 26px;
-    width: 26px;
+    width: 26px !important;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -148,3 +211,5 @@ SWITCH STUFF
 ::ng-deep  .slider.round:before {
     border-radius: 50%;
   } 
+
+

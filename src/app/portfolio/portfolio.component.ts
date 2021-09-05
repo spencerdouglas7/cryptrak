@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'portfolio',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
+  @Output() didSwitchView: EventEmitter<any> = new EventEmitter();
+  switchView() {
+      this.didSwitchView.emit('register');
+  }
   isSale: boolean = false;
   constructor() { }
 

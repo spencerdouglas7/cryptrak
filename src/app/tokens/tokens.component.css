@@ -1,5 +1,4 @@
 table {
-    border: 1px solid black;
     border-radius: 30px;
     padding: 2vh;
     border-collapse: collapse;
@@ -16,6 +15,7 @@ th {
     background-color: #00aec5;
     padding-left: 1vw; 
     padding-right: 1vw; 
+    
 }
 
 th:first-child {
