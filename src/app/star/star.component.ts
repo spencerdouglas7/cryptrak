@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WatchedService } from '../watched.service';
+import { CookieService } from 'ngx-cookie-service';
 let unfilledSrc: string = "../../assets/unfilledstar.png";
 let filledSrc: string = "../../assets/filledstar.png";
 @Component({
@@ -12,33 +13,33 @@ export class StarComponent implements OnInit {
     @Input() tokenSymbol: string = "";
     @Input() filled: boolean = false;
     imgSrc: string = unfilledSrc;
-    constructor(private watchedService: WatchedService) {}
+    constructor(private watchedService: WatchedService, private cookieService: CookieService) {}
     didClickStar() {
-
+        let userId = this.cookieService.get('userId');
+        let loginToken = this.cookieService.get('loginToken');
         if (this.filled) {
             this.filled = false;
-            
             this.imgSrc = unfilledSrc;
-            console.log(this.imgSrc);
-            //this.saveTokenToWatchlist(this.tokenSymbol);
+            this.unsaveTokenFromWatchlist(this.tokenSymbol, userId, loginToken);
         }
         else {
-            console.log()
             this.filled = true;
             this.imgSrc = filledSrc;
-            console.log(this.imgSrc);
-            //this.unsaveTokenFromWatchlist(this.tokenSymbol);
+            this.saveTokenToWatchlist(this.tokenSymbol, userId, loginToken);
         }
     }
 
-    saveTokenToWatchlist(tokenSymbol: string) {
-        this.watchedService.saveTokenToWatchlist(tokenSymbol);
+    saveTokenToWatchlist(tokenSymbol: string, userId: string, loginToken: string) {
+
+        this.watchedService.saveTokenToWatchlist(tokenSymbol, userId, loginToken);
     }
-    unsaveTokenFromWatchlist(tokenSymbol: string) {
-        this.watchedService.unsaveTokenFromWatchlist(tokenSymbol);
+    unsaveTokenFromWatchlist(tokenSymbol: string, userId: string, loginToken: string) {
+        this.watchedService.unsaveTokenFromWatchlist(tokenSymbol, userId, loginToken);
     }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { 
+
+    }
 
 
 }

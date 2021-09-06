@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { WatchedService } from './watched.service';
 import { PortfolioService } from './portfolio.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   //add the components in the module:
@@ -39,6 +40,7 @@ import { PortfolioService } from './portfolio.service';
     UsersService,
     WatchedService,
     PortfolioService,
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })

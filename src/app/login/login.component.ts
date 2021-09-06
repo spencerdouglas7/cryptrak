@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UsersService } from '../users.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'login',
@@ -15,11 +16,11 @@ export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
   errors: string = "";
-  constructor(private usersService: UsersService) { 
+  constructor(private usersService: UsersService, private cookieService: CookieService) { 
     
   }
 
-  login(email: string, password: string) {
+  async login(email: string, password: string) {
     this.errors = "";
     if (!email.length) {
       this.errors += "Your username is invalid.\n"
@@ -31,7 +32,15 @@ export class LoginComponent implements OnInit {
       console.log(this.errors);
       return;
     }
-    this.usersService.registerUser(email, password);
+    let result : any = await this.usersService.registerUser(email, password);
+    let json = JSON.parse(result); 
+    let id = json.id;
+    let loginToken = json.login_token;
+    if (id && loginToken) {
+        this.cookieService.set('userId', id);
+        this.cookieService.set('loginToken', loginToken);
+      }
+     
   }
   ngOnInit(): void {
   }
