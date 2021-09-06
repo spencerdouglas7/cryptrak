@@ -7,20 +7,33 @@ import { WatchedService } from '../watched.service';
 import { CookieService } from 'ngx-cookie-service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
-// @Pipe({
-//     name: "rankTokens"
-// })
-// class rankTokens {
-//     transform(tokens: TokenData[]) {
-//         tokens.sort((a, b) => {
-//             return this.watchlist[a.symbol] ? 1 : -1;
-//         });
-//     }
-// }
 
 
 
 
+let userWatchlist: any;
+
+@Pipe({
+    name: "ranking",
+    pure: false
+})
+export class RankTokens {
+    transform(tokens: TokenData[]) {
+        tokens.sort((a, b) => {
+            if (userWatchlist[a.symbol] && userWatchlist[b.symbol]) {
+                return (a.rank - b.rank);
+            }
+            if (userWatchlist[a.symbol]) {
+                return -1;
+            }
+            if (userWatchlist[b.symbol]) {
+                return 1
+            }
+            return (a.rank - b.rank);
+        });
+        return tokens;
+    }
+}
 
 
 @Component({
@@ -29,11 +42,10 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     styleUrls: ['./tokens.component.css']
 })
 export class TokensComponent implements OnInit {
-    tokens: TokenData[];
-    watchlist: any;
+    tokens: TokenData[] = [];
     constructor(tokensService: TokensService, watchedService: WatchedService, cookieService: CookieService) {
         this.tokens = tokensService.getAllTokens();
-        this.watchlist = {};
+        userWatchlist = {};
         let userId = cookieService.get('userId');
         let loginToken = cookieService.get('loginToken');
 
@@ -46,11 +58,15 @@ export class TokensComponent implements OnInit {
             for (let i = 0; i< rawEntries.length; i += 3) {
                 let tokenSymbol = rawEntries[i].split('\"')[1];
                 if (tokenSymbol)
-                    this.watchlist[tokenSymbol] = "watched";
+                userWatchlist[tokenSymbol] = "watched";
             }
 
         });
-        
+    }
+
+
+    isWatched(tokenSymbol: string) {
+        return userWatchlist[tokenSymbol] != undefined;
     }
 
 

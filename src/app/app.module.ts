@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { WatchedService } from './watched.service';
 import { PortfolioService } from './portfolio.service';
 import { CookieService } from 'ngx-cookie-service';
+import { RankTokens } from './tokens/tokens.component'
 
 @NgModule({
   //add the components in the module:
@@ -28,7 +29,8 @@ import { CookieService } from 'ngx-cookie-service';
     WatchedComponent,
     AuthComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    RankTokens,
   ],
   imports: [
     BrowserModule,

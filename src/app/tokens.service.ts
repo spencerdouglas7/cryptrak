@@ -27,9 +27,6 @@ export class TokensService {
           let newTokenData = new TokenData(symbol, name, rank, time, data);
           allTokens.push(newTokenData)
         });
-        allTokens = allTokens.sort((a,b) => {
-          return a.rank - b.rank;
-        });
     })
     .catch(error => {
         //TODO: handle the error

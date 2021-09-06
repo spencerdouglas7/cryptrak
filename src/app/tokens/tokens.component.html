@@ -9,17 +9,17 @@
         <th>Hourly Change</th>
         <th>Daily Change</th>
     </tr>
-    <tr *ngFor="let token of tokens;">
+    <tr *ngFor="let token of tokens | ranking">
       <!-- <token [name] = "token.name" 
              [symbol] = "token.symbol"
              [data] = "token.data"
              [rank] = "token.rank">
       </token> -->
-      <td><star [tokenSymbol] = "token.symbol" [filled] = "watchlist[token.symbol]"></star></td>
+      <td><star [tokenSymbol] = "token.symbol" [filled] = "isWatched(token.symbol)"></star></td>
       <td><b>{{token.rank}}</b></td>
       <td><b>{{token.symbol}}</b></td>
       <td>{{token.name}}</td>
-      <td>${{(token.data.price.toFixed(2)).toLocaleString('en-US')}}</td>
+      <td>{{token.data.price| currency}}</td>
       <td [ngClass]="{'price-up': token.data.percentChange1h >= 0, 'price-down': token.data.percentChange1h < 0}">{{token.data.percentChange1h.toFixed(2)}}%</td>
       <td [ngClass]="{'price-up': token.data.percentChange24h >= 0, 'price-down': token.data.percentChange24h < 0}">{{token.data.percentChange24h.toFixed(2)}}%</td>
     </tr>
