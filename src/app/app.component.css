@@ -2,7 +2,10 @@
     padding: 0;
     margin: 0;
     background-color: #1e2225;
-    color: white;
+    color: white;   
+}
+::ng-deep input {
+  outline: none;
 }
 ::ng-deep a:hover {
     cursor: pointer;
@@ -17,7 +20,7 @@ header {
     align-content: center;
     background-color: #000000;
     color: #00aec5;
-    font-size: 5vh;
+    font-size: 2.5vw;
     min-height: 8vh;
     font-family: 'Exo';
     font-weight: 100;
@@ -41,7 +44,7 @@ header {
 ::ng-deep .section-header {
     font-family: 'Exo';
     font-weight: 200;
-    font-size: 4vh;
+    font-size: 2vw;
     color: #00aec5;
     text-align: center;
 }
@@ -64,7 +67,6 @@ header {
 }
 
 ::ng-deep .rounded-button { 
-    align-self: center;
     border-radius: 30px;
     border: none;
     background-color: #00aec5;
@@ -74,6 +76,9 @@ header {
     padding-right: 2em;
     white-space: nowrap;
     transition: transform .3s;
+    align-self: center;
+    font-family: 'Exo';
+    font-weight: 600;
     
 }
 ::ng-deep .rounded-button:hover, .slider.round {
@@ -99,6 +104,23 @@ header {
   padding-top: .25em;
   padding-bottom: .25em;
   text-align: center;
+  transition: transform .3s;
+}
+
+::ng-deep input[type=text]:hover, ::ng-deep input[type=password]:hover, ::ng-deep input[type=text]:focus, ::ng-deep input[type=password]:focus{
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+::ng-deep input[type=text]:focus, ::ng-deep input[type=password]:focus{
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 ::ng-deep ::-webkit-input-placeholder {
@@ -124,12 +146,10 @@ header {
     justify-content: center;
     margin-top: 1vh;
     margin-bottom: 1vh;
-    width: 50%;
     align-self: center;
+    width: 100%;
 }
-::ng-deep .form-item > *{
-    margin-right: 1em;
-}
+
 
 ::ng-deep .stonks {
     color: rgb(1, 155, 30);

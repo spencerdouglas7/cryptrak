@@ -32,13 +32,14 @@ export class LoginComponent implements OnInit {
       console.log(this.errors);
       return;
     }
-    let result : any = await this.usersService.registerUser(email, password);
+    let result : any = await this.usersService.loginUser(email, password);
     let json = JSON.parse(result); 
     let id = json.id;
     let loginToken = json.login_token;
     if (id && loginToken) {
         this.cookieService.set('userId', id);
         this.cookieService.set('loginToken', loginToken);
+        this.usersService.userDidAuthenticate();
       }
      
   }

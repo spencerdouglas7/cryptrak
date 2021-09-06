@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +6,80 @@ import { Injectable } from '@angular/core';
 export class UsersService {
 
     constructor() { }
+
+    @Output() authenticationStatus = new EventEmitter<string>();
+    
+    userDidAuthenticate() {
+        
+        console.log('emitting')
+      this.authenticationStatus.emit('authenticated');
+    }
+
+    userDidSignOut() {
+        this.authenticationStatus.emit('signout');
+    }
+
+
+    loginUser(email: string, password: string): Promise<string> {
+        let request = new Promise<string>((resolve, reject) => {
+            let data = {
+                email: email,
+                password: password
+            }
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://127.0.0.1:5000/login");
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                let response: any;
+                xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    response = xhr.responseText;
+                    if (response && response.id) {
+                        
+                    }
+                    resolve(response);
+                }};
+        
+                xhr.send(JSON.stringify(data));
+        });
+        request.then(response => {
+            let json = JSON.parse(response);
+            if (json && json.id) {
+                // this.userDidAuthenticate();
+            }
+        });
+        return request;
+    }
+
+    validateToken(userId: string, loginToken: string): Promise<string> {
+        let request = new Promise<string>((resolve, reject) => {
+            let data = {
+                id: userId,
+                token: loginToken
+            }
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://127.0.0.1:5000/validatetoken");
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                let response: any;
+                xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    response = xhr.responseText;
+                    console.log(response)
+                    resolve(response);
+                }};
+                
+                xhr.send(JSON.stringify(data));
+        });
+        request.then(response => {
+            let json = JSON.parse(response);
+            if (json && json.id) {
+                // this.userDidAuthenticate();
+            }
+        });
+        return request;
+    }
+
 
     registerUser(email: string, password: string): Promise<string> {
         return new Promise((resolve, reject) => {
@@ -21,7 +95,9 @@ export class UsersService {
                 xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     response = xhr.responseText;
+                    console.log(response)
                     resolve(response);
+                    
                 }};
         
                 xhr.send(JSON.stringify(data));

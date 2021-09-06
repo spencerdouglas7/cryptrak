@@ -9,13 +9,13 @@
         <th>Hourly Change</th>
         <th>Daily Change</th>
     </tr>
-    <tr *ngFor="let token of tokens | ranking">
+    <tr *ngFor="let token of tokens | ranking: refreshCount">
       <!-- <token [name] = "token.name" 
              [symbol] = "token.symbol"
              [data] = "token.data"
              [rank] = "token.rank">
       </token> -->
-      <td><star [tokenSymbol] = "token.symbol" [filled] = "isWatched(token.symbol)"></star></td>
+      <td (click) = "updateRankings(token.symbol)"><star  [tokenSymbol] = "token.symbol" [filled] = "isWatched(token.symbol)"></star></td>
       <td><b>{{token.rank}}</b></td>
       <td><b>{{token.symbol}}</b></td>
       <td>{{token.name}}</td>

@@ -3,14 +3,14 @@
     <table>
     </table>
     <form>
-        <div class = "form-item">
-            <label>Token Name</label><input type = "text">
+        <div class = "form-item" style = "width: 50%">
+            <input type = "text" placeholder = "Token Symbol (e.g. BTC)">
         </div>
-        <div class = "form-item">
-            <label>Amount</label><input type = "text">
+        <div class = "form-item" style = "width: 50%">
+            <input type = "text" placeholder = "Amount">
         </div>
-        <div class = "form-item">
-            <label>Fiat Cost</label><input type = "text">
+        <div class = "form-item" style = "width: 50%">
+            <input type = "text" placeholder = "Fiat Cost">
         </div>
         <div class = "form-item" style = "align-items: center; align-content: center; width: 100% !important">
             <span [ngClass] = "{'stonks' : !isSale, 'loss' : isSale}">Purchase</span>
