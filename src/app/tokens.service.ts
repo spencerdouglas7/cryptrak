@@ -24,15 +24,12 @@ export class TokensService {
           let name = tokenJSON[1].name;
           let rank = tokenJSON[1].rank;
           let time = tokenJSON[1].time;
-          //let newToken = {"symbol": symbol, "name": name, "rank": rank, "time": time, "data": data};
           let newTokenData = new TokenData(symbol, name, rank, time, data);
-          //let newToken = new TokenComponent();
           allTokens.push(newTokenData)
         });
         allTokens = allTokens.sort((a,b) => {
           return a.rank - b.rank;
         });
-        console.log(allTokens)
     })
     .catch(error => {
         //TODO: handle the error

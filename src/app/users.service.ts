@@ -13,7 +13,6 @@ export class UsersService {
                 email: email,
                 password: password
             }
-        
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "http://127.0.0.1:5000/register");
                 xhr.setRequestHeader("Accept", "application/json");
@@ -26,7 +25,7 @@ export class UsersService {
                 }};
         
                 xhr.send(JSON.stringify(data));
-        })
+        });
         
         //TODO: Maybe come back to work with fetch. Fetch is more modern, but seems to be primarily intended to be JS-JS
         //end to end; the body is sent as a ReadableStream which doesn't yet seem to work well with python
