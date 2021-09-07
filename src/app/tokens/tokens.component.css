@@ -2,7 +2,7 @@ table {
     border-radius: 30px;
     padding: 2vh;
     border-collapse: collapse;
-    max-height: 75vh;
+    max-height: 80%;
     overflow: scroll;
     font-family: 'Exo';
     display: block;

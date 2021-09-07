@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
     if (id && loginToken) {
       this.cookieService.set('userId', id);
       this.cookieService.set('loginToken', loginToken);
+      this.usersService.userDidAuthenticate();
     }
   }
 

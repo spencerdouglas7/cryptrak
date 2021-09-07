@@ -29,22 +29,27 @@ header {
 }
 .dash-left-stack {
     width: 60vw;
-    border-right: solid red 1px;
+    border-right: solid #00aec5 1px;
+    margin-bottom: 2.5vh;
 }
 
 .dash-right-stack {
-    border-left: solid red 1px;
+    border-left: solid #00aec5 1px;
     width: 40vw;
-    
+    margin-bottom: 2.5vh;
 }
 
 
 ::ng-deep .section-header {
     font-family: 'Exo';
-    font-weight: 200;
+    font-weight: 500;
     font-size: 2vw;
     color: #00aec5;
     text-align: center;
+    border-bottom: 1px solid #00aec5;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding-bottom: 2vh;
 }
 ::ng-deep .cryptrak-text {
   font-family: 'Exo';
@@ -62,6 +67,9 @@ header {
     border-radius: 15px;
     border: 1px solid #00aec5;
     background-color: #26353b;
+    height: 95%;
+    max-height: 95%;
+    margin-bottom: 2.5vh;
 }
 
 ::ng-deep .rounded-button { 
