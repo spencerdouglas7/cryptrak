@@ -298,7 +298,7 @@
   }
 </style>
 <header>cryptrak</header>
-<div class = "bubble-component"><auth></auth></div>
+<div class = "bubble-component" [hidden] = "userAuthenticated()"><auth></auth></div>
 
 <div style = "display: flex; max-height: 90vh;">
   <div class = "dash-left-stack">
@@ -306,7 +306,7 @@
   </div>
   <div class = "dash-right-stack">
       <div class = "bubble-component portfolio"><portfolio></portfolio></div>
-      <div class = "bubble-component watched"><watched></watched></div>
+      <!-- <div class = "bubble-component watched"><watched></watched></div> -->
   </div>
 </div>
 

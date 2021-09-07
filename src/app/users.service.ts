@@ -4,19 +4,23 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
   providedIn: 'root'
 })
 export class UsersService {
-
-    constructor() { }
-
+    private _userAuthenticated: boolean = false;
     @Output() authenticationStatus = new EventEmitter<string>();
+    constructor() { }
     
+    
+    get userAuthenticated() {
+        return this._userAuthenticated;
+    }
+
     userDidAuthenticate() {
-        
-        console.log('emitting')
       this.authenticationStatus.emit('authenticated');
+      this._userAuthenticated = true;
     }
 
     userDidSignOut() {
         this.authenticationStatus.emit('signout');
+        this._userAuthenticated = false;
     }
 
 

@@ -35,9 +35,7 @@ header {
 .dash-right-stack {
     border-left: solid red 1px;
     width: 40vw;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-around;
+    
 }
 
 
