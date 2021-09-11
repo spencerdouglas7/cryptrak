@@ -17,6 +17,7 @@ import { WatchedService } from './watched.service';
 import { PortfolioService } from './portfolio.service';
 import { CookieService } from 'ngx-cookie-service';
 import { RankTokens } from './tokens/tokens.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   //add the components in the module:
@@ -36,6 +37,7 @@ import { RankTokens } from './tokens/tokens.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     TokensService,

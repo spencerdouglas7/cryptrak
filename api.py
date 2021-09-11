@@ -9,7 +9,7 @@ import os
 import binascii
 
 db = mysql.connector.connect(
-  host="35.202.25.174",
+  host="34.134.163.104",
   user="root",
   password="V4lhalla*",
   database="cryptrak"
@@ -102,7 +102,7 @@ def set_login_token_for_user(user_id):
 #Get all watched tokens for a given user
 def get_watched_for_user_id(user_id, login_token):
     if validate_user(user_id, login_token) == False:
-        return False
+        return {'error': 'failed to validate token'}
     cursor = db.cursor()
     sql = "SELECT token_symbol FROM watched WHERE user_id = %s"
     val = (user_id,)
@@ -112,7 +112,7 @@ def get_watched_for_user_id(user_id, login_token):
 #Add new watched token for user
 def add_watched_for_user_id(user_id, symbol, login_token):
     if validate_user(user_id, login_token) == False:
-        return False
+        return {'error': 'failed to validate token'}
     cursor = db.cursor()
     sql = "INSERT INTO watched (user_id, token_symbol) VALUES (%s, %s)"
     val = (user_id, symbol)
@@ -122,7 +122,7 @@ def add_watched_for_user_id(user_id, symbol, login_token):
 #Delete a watched token for user
 def delete_watched_for_user_id(user_id, symbol, login_token):    
     if validate_user(user_id, login_token) == False:
-        return False
+        return {'error': 'failed to validate token'}
     cursor = db.cursor()
     sql = "DELETE FROM watched WHERE user_id = %s AND token_symbol = %s"
     val = (user_id, symbol)
@@ -132,35 +132,35 @@ def delete_watched_for_user_id(user_id, symbol, login_token):
 
 
 #Add new transaction for user
-def add_transaction_for_user_id(user_id, symbol, amount, price, login_token):
+def add_transaction_for_user_id(symbol, amount, price, user_id, login_token):
     if validate_user(user_id, login_token) == False:
-        return False
+        return {'error': 'failed to validate token'}
     cursor = db.cursor()
-    sql = "INSERT INTO transactions (user_id, token_symbol) VALUES (%s, %s)"
-    val = (email, password)
+    sql = "INSERT INTO transactions (symbol, amount, price, user_id) VALUES (%s, %s, %s, %s)"
+    val = (symbol, amount, price, user_id)
     cursor.execute(sql, val)
     db.commit()
 
 #Delete a transaction for user
-def delete_transaction_for_user_id(user_id, symbol, amount, price, login_token):    
+def delete_transaction_for_user_id(transaction_id, user_id, login_token):    
     if validate_user(user_id, login_token) == False:
-        return False
+        return {'error': 'failed to validate token'}
     cursor = db.cursor()
-    sql = "DELETE FROM transactions WHERE id = %s AND token_symbol = %s"
-    salt = "TODO"
-    val = (email, password)
+    sql = "DELETE FROM transactions WHERE id = %s and user_id = %s"
+    val = (transaction_id, user_id)
     cursor.execute(sql, val)
     db.commit()
 
 #Get all transactions for a given user
 def get_transactions_for_user_id(user_id, login_token):
     if validate_user(user_id, login_token) == False:
-        return False
+        return {'error': 'failed to validate token'}
     cursor = db.cursor()
-    sql = "SELECT token_symbol FROM transactions WHERE id = %s"
-    val = (user_id)
+    sql = "SELECT amount, price, symbol, id FROM transactions WHERE user_id = %s"
+    val = (user_id,)
     cursor.execute(sql, val)
     result = cursor.fetchall()
+
     return result
 
 
@@ -297,4 +297,49 @@ def api_del_watched():
     #TODO: DETERMINE THE STATUS OF THE REQUEST AND RETURN THE HTTP CODE ACCORDINGLY
 
 
-app.run(host="localhost", port=5000, debug=True)
+#Get the given user's watchlist
+@app.route('/gettransactions', methods=['POST'])
+@cross_origin()
+def api_get_transactions():
+    data = request.json # a multidict containing POST data
+    user_id = data['id']
+    login_token = data['token']
+    return jsonify(get_transactions_for_user_id(user_id, login_token))
+    #TODO: DETERMINE THE STATUS OF THE REQUEST AND RETURN THE HTTP CODE ACCORDINGLY
+
+
+
+#Attempt to add the given token to the given user's watchlist
+@app.route('/addtransaction', methods=['POST'])
+@cross_origin()
+def api_add_transaction():
+    data = request.json # a multidict containing POST data
+    symbol = data['symbol']
+    amount = data['amount']
+    price = data['price']
+    user_id = data['user_id']
+    login_token = data['login_token']
+    return jsonify(add_transaction_for_user_id(symbol, amount, price, user_id, login_token))
+    #TODO: DETERMINE THE STATUS OF THE REQUEST AND RETURN THE HTTP CODE ACCORDINGLY
+
+
+@app.route('/deletetransaction', methods=['POST'])
+@cross_origin()
+def api_del_transaction():
+    data = request.json # a multidict containing POST data
+    user_id = data['id']
+    symbol = data['symbol']
+    login_token = data['token']
+    return jsonify(delete_watched_for_user_id(user_id, symbol, login_token))
+    #TODO: DETERMINE THE STATUS OF THE REQUEST AND RETURN THE HTTP CODE ACCORDINGLY
+
+@app.route('/getuserdata', methods=['POST'])
+@cross_origin()
+def get_user_data():
+    data = request.json # a multidict containing POST data
+    user_id = data['id']
+    login_token = data['token']
+
+
+# app.run(host="localhost", port=4000, debug=True, threaded=True)
+app.run(host="localhost", port=5000, debug=True, threaded=False)

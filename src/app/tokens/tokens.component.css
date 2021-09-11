@@ -1,6 +1,7 @@
 table {
     border-radius: 30px;
-    padding: 2vh;
+    padding-left: 1vh;
+    padding-right: 1vw;
     border-collapse: collapse;
     max-height: 80%;
     overflow: scroll;

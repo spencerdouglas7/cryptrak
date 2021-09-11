@@ -1,8 +1,17 @@
 <h2 class = "section-header"> Portfolio</h2>
 <div style = "display: flex; flex-flow: column nowrap">
-    <table>
-    </table>
+    <div class="center-container">
+        <table>
+            <tr *ngFor="let ownedToken of portfolio" style = "color: white;">
+                <td>{{ownedToken.symbol}}</td>
+                <td>{{ownedToken.amount.toFixed(3)}}{{ownedToken.symbol}}</td>
+                <td>{{ownedToken.cost | currency}}</td>
+            </tr>
+        </table>
+    </div>
+    <hr class="cryptrak-break">
     <form>
+        <div class="cryptrak-text"></div>
         <div class = "form-item" style = "width: 50%">
             <input type = "text" placeholder = "Token Symbol (e.g. BTC)">
         </div>
@@ -21,8 +30,20 @@
               <span [ngClass] = "{'loss' : !isSale, 'stonks' : isSale}">Sale</span>
         </div>
         <div class = "form-item">
-            <button type = "button" class = "rounded-button">Add Transaction</button>
+            <button type = "button" class = "rounded-button" (click) = "addTransaction('ETH', '0.33' , '20.20', '11', 'a4f25e909bee98230ee8')">Add Transaction</button>
         </div>
     </form>
+    <hr class="cryptrak-break">
+        <!--Full transcation history-->
+        <button class="rounded-button" (click) = "showFullHistory = !showFullHistory">View Transaction History</button>
+        <div class="center-container">
+            <table  [@inOutAnimation] = "showFullHistory ? 'open' : 'closed'">
+                <tr *ngFor="let transaction of transactions" style = "color: white;">
+                    <td>{{transaction.symbol}}</td>
+                    <td>{{transaction.amount}}</td>
+                    <td>{{transaction.price | currency}}</td>
+                </tr>
+            </table>
+        </div>
 </div>
 

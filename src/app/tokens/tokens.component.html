@@ -1,6 +1,6 @@
 <h2 class = "section-header" style = "text-align: center;">Current Market</h2>
 <table class='table'>
-    <tr>
+    <tr style = "position: sticky; top: 0px; background-color: var(--cryptrak);">
         <th></th>
         <th>Rank</th>
         <th>Symbol</th>
@@ -9,6 +9,7 @@
         <th>Hourly Change</th>
         <th>Daily Change</th>
     </tr>
+    <tr *ngIf = "tokens.length == 0">Loading market data...</tr>
     <tr *ngFor="let token of tokens | ranking: refreshCount">
       <!-- <token [name] = "token.name" 
              [symbol] = "token.symbol"
